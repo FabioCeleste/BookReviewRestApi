@@ -1,0 +1,41 @@
+dotnet new webapi -n Nome.Projeto
+Cria o pojeto, O -n serve para dar o nome do projeto
+
+dotnet watch run
+Para ficar rodando a aplicação
+
+Criar um Model com os atributos que ficarão salvos no banco de dados
+
+dotnet tool install --global dotnet-ef
+Para instalar o entity framework
+
+O datacontext deve herdar de DbContext do EF
+
+services.AddDbContext<DataContext>(
+    context => context.UseSqlite(
+        Configuration.GetConnectionString("Default")
+    )
+)
+Registrar o context no Startup.cs
+
+dotnet ef migrations add init
+dotnet ef migrations add addContractToConsumer -p AgreementMaker.Persistence -s AgreementMaker.API
+Para criar as migrations
+
+dotnet ef database update
+Para criar o arquivo de banco de dados
+
+dotnet new sln -n AgreementMaker
+Para criar uma solução onde ira ficar registrado todas as lib
+
+dotnet new classlib -n AgreementMaker.Persistence
+Para criar uma nova lib
+
+dotnet sln AgreementMaker.sln add AgreementMaker.Application
+Para referenciar a lib
+
+dotnet add AgreementMaker.API/AgreementMaker.API.csproj reference AgreementMaker.Application
+para fazer uma referencia entre lib
+
+Domain - É onde fica os campos da tabela do banco de dados
+Persistence - É onde fica as tabela dos bancos de dados
